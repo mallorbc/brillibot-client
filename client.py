@@ -10,6 +10,7 @@ from pydantic import BaseModel
 
 class post_data(BaseModel):
     id: str
+    actions:dict[str,list[str]]
 
 
 class BrillibotClient:
@@ -21,6 +22,9 @@ class BrillibotClient:
         self.r.pause_threshold = config.pause_threshold
         self.r.dynamic_energy_threshold = config.dynamic_energy_threshold
 
+        with open(config.actions_file) as f:
+            self.actions = json.load(f)
+
         self.json_headers = {"Content-Type": "application/json"}
 
         
@@ -28,11 +32,11 @@ class BrillibotClient:
     def send_audio(self, audio: AudioSegment):
         audio_bytes = io.BytesIO(audio.raw_data)
         audio_bytes.seek(0)
-        result = requests.post(self.url + "/post_audio", files={"file": audio_bytes,"test":"test"})
+        result = requests.post(self.url + "/post_audio", files={"file": audio_bytes})
         return json.loads(result.text)
     
-    def send_metadata(self, metadata:str):
-        meta_data = post_data(id=metadata).dict()
+    def send_metadata(self, id:str):
+        meta_data = post_data(id=id,actions=self.actions).dict()
         result = requests.post(self.url + "/get_result", json=meta_data, headers=self.json_headers)
         return json.loads(result.text)
     
@@ -51,13 +55,13 @@ class BrillibotClient:
 
 
             id = self.send_audio(mp3_audio_clip)["id"]
-            print(id)
             result = self.send_metadata(id)
-            print(result)
+            return result
     
     def listen_loop(self):
         while True:
-            self.listen()
+            result = self.listen()
+            print(result)
 
 
 
