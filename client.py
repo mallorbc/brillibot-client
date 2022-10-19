@@ -10,6 +10,7 @@ from pydantic import BaseModel
 
 class post_data(BaseModel):
     id: str
+    awake_word:str
     actions:dict[str,list[str]]
 
 
@@ -21,6 +22,8 @@ class BrillibotClient:
         self.r.energy_threshold = config.energy_threshold
         self.r.pause_threshold = config.pause_threshold
         self.r.dynamic_energy_threshold = config.dynamic_energy_threshold
+
+        self.awake_word = config.awake_word
 
         with open(config.actions_file) as f:
             self.actions = json.load(f)
@@ -36,7 +39,7 @@ class BrillibotClient:
         return json.loads(result.text)
     
     def send_metadata(self, id:str):
-        meta_data = post_data(id=id,actions=self.actions).dict()
+        meta_data = post_data(id=id,actions=self.actions,awake_word=self.awake_word).dict()
         result = requests.post(self.url + "/get_result", json=meta_data, headers=self.json_headers)
         return json.loads(result.text)
     
