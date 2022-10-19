@@ -36,13 +36,16 @@ class BrillibotClient:
         audio_bytes = io.BytesIO(audio.raw_data)
         audio_bytes.seek(0)
         result = requests.post(self.url + "/post_audio", files={"file": audio_bytes})
-        return json.loads(result.text)
+        return json.loads(result.text), result.status_code
     
     def send_metadata(self, id:str):
         meta_data = post_data(id=id,actions=self.actions,awake_word=self.awake_word).dict()
         result = requests.post(self.url + "/get_result", json=meta_data, headers=self.json_headers)
-        return json.loads(result.text)
+        return json.loads(result.text), result.status_code
     
+    def get_status(self):
+        result = requests.get(self.url + "/get_status")
+        return json.loads(result.text), result.status_code
 
     def listen(self):
         with sr.Microphone(sample_rate=16000) as source:
@@ -56,15 +59,17 @@ class BrillibotClient:
             wav_audio_clip.export(mp3_data,format="mp3")
             mp3_audio_clip = AudioSegment.from_file(mp3_data,format="mp3")
 
+            response,status = self.send_audio(mp3_audio_clip)
+            if status == 200:
+                id = response["id"]
+                response,status = self.send_metadata(id)
 
-            id = self.send_audio(mp3_audio_clip)["id"]
-            result = self.send_metadata(id)
-            return result
+            return response,status
     
     def listen_loop(self):
         while True:
-            result = self.listen()
-            print(result)
+            response,status = self.listen()
+            print(response)
 
 
 
@@ -74,4 +79,14 @@ class BrillibotClient:
 if __name__ == "__main__":
     config = Config()
     client = BrillibotClient(config)
+    try:
+        message, status = client.get_status()
+    except:
+        print("System is offline")
+        quit()
+
     client.listen_loop()
+    response = client.listen()
+    print(response)
+
+
