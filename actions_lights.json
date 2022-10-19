@@ -1,0 +1,6 @@
+{
+    "lights on": ["turn on the lights", "turn on lights", "lights on", "turn on the light", "turn on light", "light on"],
+    "lights off": ["turn off the lights", "turn off lights", "lights off", "turn off the light", "turn off light", "light off"],
+    "lights dim": ["dim the lights", "dim lights", "lights dim", "dim the light", "dim light", "light dim", "turn the brightness down"],
+    "lights bright": ["brighten the lights", "brighten lights", "lights bright", "brighten the light", "brighten light", "light bright", "turn the brightness up"]
+}

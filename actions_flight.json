@@ -1,0 +1,10 @@
+{
+    "up": ["go up", "up please", "get up", "move up"],
+    "down": ["go down", "down please", "get down", "move down"],
+    "left": ["go left", "left please", "turn left", "to the left", "left", "move left"],
+    "right": ["go right", "right please", "turn right", "to the right", "right", "move right"],
+    "stop": ["stop", "halt", "wait", "stand still", "stand", "freeze", "stop moving", "stop going forward"],
+    "forward": ["go forward", "forward please", "go ahead", "ahead please", "go straight"],
+    "backward": ["go backward", "backward please", "go back", "back please", "go backwards", "back it up"]
+
+}
