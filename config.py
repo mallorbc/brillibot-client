@@ -3,7 +3,7 @@ import os
 
 @attrs(auto_attribs=True, frozen=False, auto_detect=True)
 class Config:
-    url:str = attrib(default="http://127.0.0.1:8000")
+    url:str = attrib(default="https://brillibot.brillibits.com")
     key:str = attrib(default="1234567890")
     energy_threshold:int = attrib(default=300)
     pause_threshold:int = attrib(default=0.8)

@@ -85,7 +85,6 @@ if __name__ == "__main__":
         print("System is offline")
         quit()
 
-    client.listen_loop()
     response = client.listen()
     print(response)
 
