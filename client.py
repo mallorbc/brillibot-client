@@ -1,10 +1,8 @@
-from gettext import npgettext
 import requests
 from config import Config
 from pydub import AudioSegment
 import speech_recognition as sr
 import io
-import tempfile
 import json
 from pydantic import BaseModel
 
@@ -12,11 +10,13 @@ class post_data(BaseModel):
     id: str
     awake_word:str
     actions:dict[str,list[str]]
+    key:str
 
 
 class BrillibotClient:
     def __init__(self, config: Config):
         self.url = config.url
+        self.key = config.key
 
         self.r = sr.Recognizer()
         self.r.energy_threshold = config.energy_threshold
@@ -39,7 +39,7 @@ class BrillibotClient:
         return json.loads(result.text), result.status_code
     
     def send_metadata(self, id:str):
-        meta_data = post_data(id=id,actions=self.actions,awake_word=self.awake_word).dict()
+        meta_data = post_data(id=id,actions=self.actions,awake_word=self.awake_word,key=self.key).dict()
         result = requests.post(self.url + "/get_result", json=meta_data, headers=self.json_headers)
         return json.loads(result.text), result.status_code
     
