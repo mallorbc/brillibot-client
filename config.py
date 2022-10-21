@@ -1,11 +1,13 @@
 from attr import attrib, attrs
+import os
 
 @attrs(auto_attribs=True, frozen=False, auto_detect=True)
 class Config:
     url:str = attrib(default="http://127.0.0.1:8000")
+    key:str = attrib(default="1234567890")
     energy_threshold:int = attrib(default=300)
     pause_threshold:int = attrib(default=0.8)
     dynamic_energy_threshold:bool = attrib(default=True)
-    awake_word:str = attrib(default="bobby")
+    awake_word:str = attrib(default="computer")
     actions_file:str = attrib(default="actions_flight.json")
     # actions_file:str = attrib(default="actions_lights.json")
