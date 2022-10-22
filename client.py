@@ -10,7 +10,6 @@ class post_data(BaseModel):
     id: str
     awake_word:str
     actions:dict[str,list[str]]
-    key:str
 
 
 class BrillibotClient:
@@ -35,12 +34,14 @@ class BrillibotClient:
     def send_audio(self, audio: AudioSegment):
         audio_bytes = io.BytesIO(audio.raw_data)
         audio_bytes.seek(0)
-        result = requests.post(self.url + "/post_audio", files={"file": audio_bytes})
+        cookies = {"key":self.key}
+        result = requests.post(self.url + "/post_audio", files={"file": audio_bytes},cookies=cookies)
         return json.loads(result.text), result.status_code
     
     def send_metadata(self, id:str):
         meta_data = post_data(id=id,actions=self.actions,awake_word=self.awake_word,key=self.key).dict()
-        result = requests.post(self.url + "/get_result", json=meta_data, headers=self.json_headers)
+        cookies = {"key":self.key}
+        result = requests.post(self.url + "/get_result", json=meta_data, headers=self.json_headers,cookies=cookies)
         return json.loads(result.text), result.status_code
     
     def get_status(self):
