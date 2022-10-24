@@ -35,10 +35,20 @@ To see the run options run ```brillibot_client  -h```. Providing an actions file
 
 ## Troubleshooting
 
-If you are having issues with the your microphone, try running the following:
+This repo needs PortAudio to work. 
+
+If you are having issues with the your microphone, try running the following for Ubuntu:
 ```
 sudo apt install portaudio19-dev python3-pyaudio
 ```
+Windows:
+```
+pip install pipwin
+```
+```
+pipwin install pyaudio
+```
+
 
 ## License
 
