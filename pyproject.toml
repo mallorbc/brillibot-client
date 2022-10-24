@@ -23,7 +23,7 @@ dependencies = [
     "pydub",
     "requests",
     "pydantic",
-    "attr",
+    "attrs",
     'importlib-metadata; python_version>"3.9"'
 ]
 
