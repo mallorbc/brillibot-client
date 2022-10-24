@@ -39,7 +39,7 @@ This repo needs PortAudio to work.
 
 If you are having issues with the your microphone, try running the following for Ubuntu:
 ```
-sudo apt install portaudio19-dev python3-pyaudio
+sudo apt install portaudio19-dev python3-pyaudio gcc
 ```
 Windows:
 ```
