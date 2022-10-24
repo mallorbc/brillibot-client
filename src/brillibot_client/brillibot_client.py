@@ -1,5 +1,5 @@
 import requests
-from client.config import Config
+from brillibot_client.config import Config
 from pydub import AudioSegment
 import speech_recognition as sr
 import io
