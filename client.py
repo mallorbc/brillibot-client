@@ -16,6 +16,7 @@ class BrillibotClient:
     def __init__(self, config: Config):
         self.url = config.url
         self.key = config.key
+        self.config = config
 
         self.r = sr.Recognizer()
         self.r.energy_threshold = config.energy_threshold
@@ -59,6 +60,8 @@ class BrillibotClient:
             mp3_data = io.BytesIO()
             wav_audio_clip.export(mp3_data,format="mp3")
             mp3_audio_clip = AudioSegment.from_file(mp3_data,format="mp3")
+            if self.config.save_file:
+                mp3_audio_clip.export("audio.mp3",format="mp3")
 
             response,status = self.send_audio(mp3_audio_clip)
             if status == 200:
