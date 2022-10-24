@@ -11,6 +11,10 @@ The API is currently rate limited for public use, API keys are a possibility.
 
 Redeployment server side takes a few minutes, thus due to the fact that development is still ongoing, expect periodic downtime.
 
+## Requirements
+
+ffmpeg is required for this application to work properly
+
 ## Installation
 
 It is reccomended to use a venv before installing.
