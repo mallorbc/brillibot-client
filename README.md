@@ -15,6 +15,12 @@ It is reccomended to use a venv before installing.
 
 ```pip install git+https://github.com/mallorbc/brillibot-client.git```
 
+### Upgrading
+
+If the repo was updated since you last installed, running may be needed:
+
+```pip install git+https://github.com/mallorbc/brillibot-client.git --no-cache```
+
 ## Python Package Examples
 
 Inside the ```/examples``` folder there are two files that show how one can use the Python package either with a file, or with a microphone.
