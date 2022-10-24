@@ -31,6 +31,13 @@ To use the CLI, insure that you are inside the venv after installation.  The CLI
 
 To see the run options run ```brillibot_client  -h```. Providing an actions file is a must, to do so, use the ```-a``` flag
 
+## Troubleshooting
+
+If you are having issues with the your microphone, try running the following:
+```
+sudo apt install portaudio19-dev python3-pyaudio
+```
+
 ## License
 
 This repo is licensed under the AGPL license.  See [LICENSE](LICENSE) for more information.  If you require other license options, contact me.
