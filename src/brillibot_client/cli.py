@@ -12,7 +12,10 @@ def main():
     parser.add_argument("-p", "--pause_threshold", help="Option to override pause_threshold", type=float,default=None)
     parser.add_argument("-w", "--awake_word", help="Option to override awake_word", type=str,default=None)
     parser.add_argument("-l", "--listen_loop", help="Will keep listening", action="store_true",default=None)
+    parser.add_argument("-f", "--file", help="Option to load from a file",default=None)
     args = parser.parse_args()
+    if args.actions_file is None:
+        raise Exception("You must provide an actions file")
     config = Config()
     if args.actions_file:
         config.actions_file = args.actions_file
@@ -36,6 +39,9 @@ def main():
     
     if args.listen_loop:
         client.listen_loop()
+    elif args.file:
+        response = client.from_file("audio0.mp3",format="mp3")
+        print(response)
     else:
         response = client.listen()
         print(response)    
