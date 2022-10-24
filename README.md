@@ -9,6 +9,8 @@ It works by having a user simply define their possible commands in a JSON file w
 
 The API is currently rate limited for public use, API keys are a possibility.
 
+Redeployment server side takes a few minutes, thus due to the fact that development is still ongoing, expect periodic downtime.
+
 ## Installation
 
 It is reccomended to use a venv before installing.
