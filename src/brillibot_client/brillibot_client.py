@@ -76,4 +76,11 @@ class BrillibotClient:
             print(response)
 
 
+    def from_file(self, file_path: str,format:str="mp3"):
+        audio = AudioSegment.from_file(file_path,format=format)
 
+        response,status = self.send_audio(audio)
+        if status == 200:
+            id = response["id"]
+            response,status = self.send_metadata(id)       
+        return response,status 
