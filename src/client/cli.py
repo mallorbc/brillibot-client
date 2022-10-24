@@ -1,5 +1,5 @@
-from client import BrillibotClient
-from config import Config
+from client.config import Config
+from client.brillibot_client import BrillibotClient
 import argparse
 
 def main():

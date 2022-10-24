@@ -21,6 +21,8 @@ dependencies = [
     "speechrecognition",
     "pyaudio",
     "pydub",
+    "requests",
+    "pydantic",
     'importlib-metadata; python_version>"3.9"'
 ]
 
