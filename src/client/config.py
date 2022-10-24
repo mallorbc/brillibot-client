@@ -10,5 +10,5 @@ class Config:
     pause_threshold:int = attrib(default=0.8)
     dynamic_energy_threshold:bool = attrib(default=True)
     awake_word:str = attrib(default="computer")
-    actions_file:str = attrib(default="../actions/actions_flight.json")
+    actions_file:str = attrib(default="../../actions/actions_flight.json")
     # actions_file:str = attrib(default="../actions/actions_lights.json")
