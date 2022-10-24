@@ -27,6 +27,6 @@ dependencies = [
 ]
 
 [project.scripts]
-brillibot-client = "client.cli:main"
+brillibot_client = "brillibot_client.cli:main"
 
 
