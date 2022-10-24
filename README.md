@@ -27,4 +27,4 @@ To see the run options run ```brillibot_client  -h```. Providing an actions file
 
 ## License
 
-This repo is licensed under the AGPL license.  See LICENSE for more information.
+This repo is licensed under the AGPL license.  See [LICENSE](LICENSE) for more information.  If you require other license options, contact me.
